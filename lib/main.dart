@@ -20,11 +20,11 @@ class MovieApp extends StatelessWidget {
       routes: {
         AppSectionScreen.routeName: (context) => AppSectionScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
-        DetailsScreen.routeName:(context)=>DetailsScreen(),
+        DetailsScreen.routeName: (context) => DetailsScreen(),
         SearchScreen.routeName: (context) => SearchScreen(),
         SavedScreen.routeName: (context) => SavedScreen(),
       },
-      initialRoute: AppSectionScreen.routeName,
+      initialRoute: DetailsScreen.routeName,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.dark,
