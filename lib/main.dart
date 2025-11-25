@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/utils/app_theme.dart';
 import 'package:movie_app/feature/appsection/app_section_screen.dart';
-import 'package:movie_app/feature/details/veiw/screen/details_screen.dart';
-import 'package:movie_app/feature/home/veiw/screen/home_screen.dart';
-import 'package:movie_app/feature/saved/veiw/screen/saved_screen.dart';
-import 'package:movie_app/feature/search/veiw/screen/search_screen.dart';
+import 'package:movie_app/feature/details/view/screen/details_screen.dart';
+import 'package:movie_app/feature/home/view/screen/home_screen.dart';
+import 'package:movie_app/feature/saved/view/screen/saved_screen.dart';
+import 'package:movie_app/feature/search/view/screen/search_screen.dart';
 
 void main() {
   runApp(MovieApp());
