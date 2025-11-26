@@ -1,14 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/core/utils/app_asset.dart';
+import 'package:movie_app/core/utils/app_color.dart';
+import 'package:movie_app/feature/details/view/screen/details_screen.dart';
+import 'package:movie_app/feature/home/view/widget/container_with_index.dart';
+import 'package:movie_app/feature/home/view_model/recommendation_cubit.dart';
+import 'package:movie_app/feature/home/view_model/recommendation_state.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late final RecommendationCubit cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    cubit = RecommendationCubit();
+    cubit.getResults();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'What do you want to watch?',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        centerTitle: false,
+      ),
+
       body: Column(
         children: [
+          BlocBuilder<RecommendationCubit, RecommendationState>(
+            bloc: cubit,
+            builder: (context, state) {
+              if (state is ErrorRecommendationState) {
+                return Center(
+                  child: Text('No internet Connection', style: TextStyle(color: AppColor.orangeColor)),
+                );
+              }
+              if (state is SuccessRecommendationState) {
+                return SizedBox(
+                  height: 250,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    itemBuilder: (context, index) {
+                      return ContainerWithIndex(
+                        pathImage:
+                        "${AppAsset.imageBaseUrl}${state.results[index].posterPath}",
+                        index: index + 1,
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => DetailsScreen(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    itemCount: state.results.length,
+                    separatorBuilder: (context, index) => SizedBox(width: 12),
+                  ),
+                );
+              }
+              return SizedBox();
+            },
+          ),
         ],
       ),
     );
