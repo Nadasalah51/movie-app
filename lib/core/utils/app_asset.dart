@@ -11,4 +11,6 @@ abstract class AppAsset {
   static const String arrowBackIcon = 'assets/icon/arrow-left_icon.svg';
   static const String boxImage = 'assets/image/box_image.png';
   static const String noResultImage = 'assets/image/no-results_image.png';
+
+  static const String imagePrefix = 'https://image.tmdb.org/t/p/w500';
 }

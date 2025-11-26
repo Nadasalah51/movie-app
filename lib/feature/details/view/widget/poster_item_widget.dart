@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:movie_app/core/utils/app_asset.dart';
 
 class PosterItemWidget extends StatelessWidget {
   const PosterItemWidget({
@@ -35,7 +36,7 @@ class PosterItemWidget extends StatelessWidget {
                         bottomRight: Radius.circular(16),
                       ),
                       child: CachedNetworkImage(
-                        imageUrl: backDropPath,
+                        imageUrl: AppAsset.imagePrefix + backDropPath,
                         progressIndicatorBuilder:
                             (context, url, downloadProgress) => Center(
                               child: CircularProgressIndicator(
@@ -53,6 +54,7 @@ class PosterItemWidget extends StatelessWidget {
                       bottom: 14,
                       right: 10,
                       child: Container(
+                        padding: EdgeInsets.only(left: 5),
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0x00000000)),
                           borderRadius: BorderRadius.circular(5),
@@ -73,7 +75,7 @@ class PosterItemWidget extends StatelessWidget {
                               semanticsLabel: 'Rating',
                             ),
                             Text(
-                              rating.toString(),
+                              rating.toStringAsFixed(1),
                               style: TextStyle(
                                 color: Color(0xffFF8700),
                                 fontSize: 12,
@@ -91,35 +93,37 @@ class PosterItemWidget extends StatelessWidget {
           ),
         ),
         Positioned(
+          left: 20,
           bottom: 2,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 30),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: CachedNetworkImage(
-                    imageUrl: posterPath,
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) => Center(
-                          child: CircularProgressIndicator(
-                            value: downloadProgress.progress,
-                            color: Color(0xff92929D),
-                          ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: CachedNetworkImage(
+                  imageUrl: AppAsset.imagePrefix + posterPath,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Center(
+                        child: CircularProgressIndicator(
+                          value: downloadProgress.progress,
+                          color: Color(0xff92929D),
                         ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                    height: 120,
-                    width: 95,
-                    fit: BoxFit.contain,
-                  ),
+                      ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  height: 120,
+                  width: 95,
+                  fit: BoxFit.contain,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 6, top: 45),
-                child: Text(
-                  movieTitle,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                padding: const EdgeInsets.only(left: 6, top: 60, right: 50),
+                child: SizedBox(
+                  width: 200,
+                  child: Text(
+                    movieTitle,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    maxLines: 2,
+                  ),
                 ),
               ),
             ],

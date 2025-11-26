@@ -10,6 +10,7 @@ class SimilarCubit extends Cubit<SimilarState> {
   Future<void> getSimilarMovies(int id) async {
     emit(LoadingState());
     final result = await SimilarApi.getSimilarMovies(id);
+
     switch (result) {
       case SuccessAPI<SimilarModel>():
         emit(SuccessState(result.data?.results ?? []));
