@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_app/core/utils/app_asset.dart';
 import 'package:movie_app/feature/details/view/widget/info_bar_item_widget.dart';
 import 'package:movie_app/feature/details/view/widget/poster_item_widget.dart';
@@ -9,6 +10,7 @@ import 'package:movie_app/feature/details/view_model/details_state.dart';
 import 'package:movie_app/feature/details/view_model/similar_cubit.dart';
 import 'package:movie_app/feature/details/view_model/similar_state.dart'
     as similar;
+import 'package:toastification/toastification.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key, required this.selectedId});
@@ -43,10 +45,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           leading: GestureDetector(
             onTap: () => Navigator.of(context).pop(),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Color(0xffffffff),
-              size: 26,
+            child: Center(
+              child: SvgPicture.asset(
+                AppAsset.arrowBackIcon,
+                width: 30,
+                height: 30,
+              ),
             ),
           ),
           title: Text(
@@ -60,10 +64,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
               onTap: () {
                 saved = !saved;
                 setState(() {});
+
+                toastification.show(
+                  context: context, // optional if you use ToastificationWrapper
+                  title: Text(
+                    saved ? 'Added To Watch List' : 'Removed from Watch List',
+                    style: Theme.of(context).appBarTheme.titleTextStyle,
+                  ),
+                  autoCloseDuration: const Duration(seconds: 2),
+                  alignment: Alignment.bottomCenter,
+                  backgroundColor: Theme.of(
+                    context,
+                  ).appBarTheme.backgroundColor,
+                  foregroundColor: Color(0xffffffff),
+                );
               },
               child: !saved
-                  ? Icon(Icons.bookmark_border, size: 36)
-                  : Icon(Icons.bookmark, size: 36),
+                  ? SvgPicture.asset(AppAsset.savedIcon, width: 30, height: 30)
+                  : SvgPicture.asset(
+                      AppAsset.savedMovieIcon,
+                      width: 30,
+                      height: 30,
+                    ),
             ),
             const SizedBox(width: 12),
           ],
@@ -143,67 +165,70 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         BlocBuilder<SimilarCubit, similar.SimilarState>(
                           builder: (context, similarState) {
                             if (similarState is similar.SuccessState) {
-                              return Center(
-                                child: Wrap(
-                                  children: similarState.similarMoviesResult
-                                      .where(
-                                        (movie) =>
-                                            movie.posterPath != null &&
-                                            movie.posterPath!.isNotEmpty,
-                                      )
-                                      .map(
-                                        (movie) => GestureDetector(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DetailsScreen(
-                                                      selectedId: movie.id!,
-                                                    ),
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 12),
+                                child: Center(
+                                  child: Wrap(
+                                    children: similarState.similarMoviesResult
+                                        .where(
+                                          (movie) =>
+                                              movie.posterPath != null &&
+                                              movie.posterPath!.isNotEmpty,
+                                        )
+                                        .map(
+                                          (movie) => GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DetailsScreen(
+                                                        selectedId: movie.id!,
+                                                      ),
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              margin: EdgeInsets.only(
+                                                right: 16,
+                                                bottom: 20,
                                               ),
-                                            );
-                                          },
-                                          child: Container(
-                                            margin: EdgeInsets.only(
-                                              right: 16,
-                                              bottom: 20,
-                                            ),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(16),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    AppAsset.imagePrefix +
-                                                    movie.posterPath!,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                      AppAsset.imagePrefix +
+                                                      movie.posterPath!,
 
-                                                progressIndicatorBuilder:
-                                                    (
-                                                      context,
-                                                      url,
-                                                      downloadProgress,
-                                                    ) => Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                            value:
-                                                                downloadProgress
-                                                                    .progress,
-                                                            color: Color(
-                                                              0xff92929D,
+                                                  progressIndicatorBuilder:
+                                                      (
+                                                        context,
+                                                        url,
+                                                        downloadProgress,
+                                                      ) => Center(
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                              value:
+                                                                  downloadProgress
+                                                                      .progress,
+                                                              color: Color(
+                                                                0xff92929D,
+                                                              ),
                                                             ),
-                                                          ),
-                                                    ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        Icon(Icons.error),
-                                                height: 145,
-                                                width: 100,
-                                                fit: BoxFit.contain,
+                                                      ),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Icon(Icons.error),
+                                                  height: 145,
+                                                  width: 100,
+                                                  fit: BoxFit.contain,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      )
-                                      .toList(),
+                                        )
+                                        .toList(),
+                                  ),
                                 ),
                               );
                             }

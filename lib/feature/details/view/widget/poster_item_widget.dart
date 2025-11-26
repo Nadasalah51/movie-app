@@ -24,72 +24,70 @@ class PosterItemWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 60),
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(16),
-                        bottomRight: Radius.circular(16),
-                      ),
-                      child: CachedNetworkImage(
-                        imageUrl: AppAsset.imagePrefix + backDropPath,
-                        progressIndicatorBuilder:
-                            (context, url, downloadProgress) => Center(
-                              child: CircularProgressIndicator(
-                                value: downloadProgress.progress,
-                                color: Color(0xff92929D),
-                              ),
-                            ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                        height: 210,
-                        width: double.infinity,
-                        fit: BoxFit.contain,
-                      ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16),
                     ),
-                    Positioned(
-                      bottom: 14,
-                      right: 10,
-                      child: Container(
-                        padding: EdgeInsets.only(left: 5),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0x00000000)),
-                          borderRadius: BorderRadius.circular(5),
-                          color: Color(0x77252836),
-                        ),
+                    child: CachedNetworkImage(
+                      imageUrl: AppAsset.imagePrefix + backDropPath,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
+                            child: CircularProgressIndicator(
+                              value: downloadProgress.progress,
+                              color: Color(0xff92929D),
+                            ),
+                          ),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      height: 210,
+                      width: double.infinity,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 14,
+                    right: 10,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 5),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0x00000000)),
+                        borderRadius: BorderRadius.circular(5),
+                        color: Color(0x77252836),
+                      ),
 
-                        width: 54,
-                        height: 24,
-                        child: Row(
-                          spacing: 4,
-                          children: [
-                            SvgPicture.asset(
-                              starIcon,
-                              colorFilter: const ColorFilter.mode(
-                                Color(0xffFF8700),
-                                BlendMode.srcIn,
-                              ),
-                              semanticsLabel: 'Rating',
+                      width: 54,
+                      height: 24,
+                      child: Row(
+                        spacing: 4,
+                        children: [
+                          SvgPicture.asset(
+                            starIcon,
+                            colorFilter: const ColorFilter.mode(
+                              Color(0xffFF8700),
+                              BlendMode.srcIn,
                             ),
-                            Text(
-                              rating.toStringAsFixed(1),
-                              style: TextStyle(
-                                color: Color(0xffFF8700),
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            semanticsLabel: 'Rating',
+                          ),
+                          Text(
+                            rating.toStringAsFixed(1),
+                            style: TextStyle(
+                              color: Color(0xffFF8700),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
         Positioned(
