@@ -18,5 +18,4 @@ class RecommendationCubit extends Cubit<RecommendationState> {
 
     }
   }
-
 }

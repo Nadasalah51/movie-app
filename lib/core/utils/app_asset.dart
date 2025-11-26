@@ -13,4 +13,5 @@ abstract class AppAsset {
   static const String noResultImage = 'assets/image/no-results_image.png';
   static const String imageBaseUrl = 'https://image.tmdb.org/t/p/w200';
   static const String dummyImage = 'https://picsum.photos/95/120';
+
 }

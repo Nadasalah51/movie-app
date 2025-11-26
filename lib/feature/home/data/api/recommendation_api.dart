@@ -3,7 +3,6 @@ import '../../../../core/network/result_api.dart' show ResultAPI, SuccessAPI, Er
 import 'package:http/http.dart' as http;
 import '../model/recommendation_model.dart' show RecommendationModel;
 
-
 class RecommendationApi {
   static Future<ResultAPI<RecommendationModel>> getDataRecommendation()async{
     Uri url = Uri.https('api.themoviedb.org','/3/movie/top_rated',{

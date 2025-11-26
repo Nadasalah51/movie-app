@@ -97,5 +97,6 @@ class Results {
     data['vote_average'] = this.voteAverage;
     data['vote_count'] = this.voteCount;
     return data;
+
   }
 }

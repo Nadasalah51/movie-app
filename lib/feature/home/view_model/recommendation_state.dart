@@ -10,4 +10,5 @@ class SuccessRecommendationState extends RecommendationState{
 class ErrorRecommendationState extends RecommendationState{
   ErrorRecommendationState(this.error);
   final String error;
+
 }
