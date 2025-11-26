@@ -61,24 +61,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
           actions: [
             GestureDetector(
-              onTap: () {
-                saved = !saved;
-                setState(() {});
-
-                toastification.show(
-                  context: context, // optional if you use ToastificationWrapper
-                  title: Text(
-                    saved ? 'Added To Watch List' : 'Removed from Watch List',
-                    style: Theme.of(context).appBarTheme.titleTextStyle,
-                  ),
-                  autoCloseDuration: const Duration(seconds: 2),
-                  alignment: Alignment.bottomCenter,
-                  backgroundColor: Theme.of(
-                    context,
-                  ).appBarTheme.backgroundColor,
-                  foregroundColor: Color(0xffffffff),
-                );
-              },
+              onTap: savedOnTap,
               child: !saved
                   ? SvgPicture.asset(AppAsset.savedIcon, width: 30, height: 30)
                   : SvgPicture.asset(
@@ -90,10 +73,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
             const SizedBox(width: 12),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              BlocBuilder<DetailsCubit, DetailsState>(
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: BlocBuilder<DetailsCubit, DetailsState>(
                 builder: (context, state) {
                   if (state is SuccessState) {
                     return Column(
@@ -240,7 +223,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 ),
                               );
                             }
-                            return Center(child: CircularProgressIndicator());
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: Color(0xff92929D),
+                              ),
+                            );
                           },
                         ),
                       ],
@@ -254,13 +241,32 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       ),
                     );
                   }
-                  return Center(child: CircularProgressIndicator());
+                  return Center(
+                    child: CircularProgressIndicator(color: Color(0xff92929D)),
+                  );
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  void savedOnTap() {
+    saved = !saved;
+    setState(() {});
+
+    toastification.show(
+      context: context, // optional if you use ToastificationWrapper
+      title: Text(
+        saved ? 'Added To Watch List' : 'Removed from Watch List',
+        style: Theme.of(context).appBarTheme.titleTextStyle,
+      ),
+      autoCloseDuration: const Duration(seconds: 2),
+      alignment: Alignment.bottomCenter,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+      foregroundColor: Color(0xffffffff),
     );
   }
 }
