@@ -1,7 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/utils/app_asset.dart';
 import 'package:movie_app/core/utils/app_color.dart';
-import 'package:cached_network_image/cached_network_image.dart' show CachedNetworkImage;
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ContainerWithIndex extends StatelessWidget {
@@ -40,7 +40,7 @@ class ContainerWithIndex extends StatelessWidget {
                 ),
               ),
               errorWidget: (context, url, error) =>
-                  Image.network(AppAsset.dummyImage),
+                  Image.asset(AppAsset.dummyImage),
               imageUrl: pathImage,
               width: 144,
               height: 210,

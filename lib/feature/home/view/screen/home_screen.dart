@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/utils/app_asset.dart';
+import 'package:movie_app/core/constants/app_const_api.dart';
 import 'package:movie_app/core/utils/app_color.dart';
 import 'package:movie_app/feature/details/view/screen/details_screen.dart';
 import 'package:movie_app/feature/home/view/widget/container_with_index.dart';
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) {
                       return ContainerWithIndex(
                         pathImage:
-                        "${AppAsset.imageBaseUrl}${state.results[index].posterPath}",
+                        "${AppConstApi.imageBaseUrl}${state.results[index].posterPath}",
                         index: index + 1,
                         onTap: () {
                           Navigator.of(context).push(

@@ -1,12 +1,13 @@
 import 'dart:convert';
-import '../../../../core/network/result_api.dart' show ResultAPI, SuccessAPI, ErrorAPI;
 import 'package:http/http.dart' as http;
-import '../model/recommendation_model.dart' show RecommendationModel;
+import 'package:movie_app/core/constants/app_const_api.dart';
+import 'package:movie_app/core/network/result_api.dart';
+import 'package:movie_app/feature/home/data/model/recommendation_model.dart';
 
 class RecommendationApi {
   static Future<ResultAPI<RecommendationModel>> getDataRecommendation()async{
-    Uri url = Uri.https('api.themoviedb.org','/3/movie/top_rated',{
-      'api_key':'a03a5441a50487cfc0416c45cd853d40',
+    Uri url = Uri.https(AppConstApi.baseUrl,AppConstApi.recommendationEndPoint,{
+      'api_key':AppConstApi.apiKey,
     });
     try{
       var response = await http.get(url);

@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/network/result_api.dart';
 import 'package:movie_app/feature/home/data/api/recommendation_api.dart';
+import 'package:movie_app/feature/home/data/model/recommendation_model.dart';
 import 'package:movie_app/feature/home/view_model/recommendation_state.dart';
-import '../data/model/recommendation_model.dart' show RecommendationModel;
 
 
 class RecommendationCubit extends Cubit<RecommendationState> {
