@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_app/core/constants/app_const_api.dart';
 import 'package:movie_app/core/utils/app_asset.dart';
 import 'package:movie_app/core/utils/app_color.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:toastification/toastification.dart';
 import 'package:movie_app/feature/details/view/widget/info_bar_item_widget.dart';
 import 'package:movie_app/feature/details/view/widget/poster_item_widget.dart';
@@ -93,6 +94,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               starIcon: AppAsset.starIcon,
                               movieTitle: state.movieDetails.title ?? '',
                               rating: state.movieDetails.voteAverage ?? 0.0,
+                              isLoading: false,
                             ),
 
                             Row(
@@ -165,10 +167,66 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                         );
                       }
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: AppColor.grayColor,
-                        ),
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: 15,
+                        children: [
+                          PosterItemWidget(
+                            starIcon: AppAsset.starIcon,
+                            movieTitle: dummyText,
+                            rating: 0.0,
+                            isLoading: true,
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            spacing: 10,
+                            children: [
+                              InfoBarItemWidget(
+                                icon: AppAsset.calenderIcon,
+                                infoText: '',
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                width: 1.5,
+                                height: 16,
+                                color: AppColor.grayColor,
+                                child: Text(''),
+                              ),
+                              InfoBarItemWidget(
+                                icon: AppAsset.clockIcon,
+                                infoText: '',
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                width: 1.5,
+                                height: 16,
+                                color: AppColor.grayColor,
+                                child: Text(''),
+                              ),
+                              InfoBarItemWidget(
+                                icon: AppAsset.ticketIcon,
+                                infoText: '',
+                              ),
+                            ],
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                              '',
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                              'Similar',
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ),
+                        ],
                       );
                     },
                   ),
@@ -220,8 +278,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                                       CircularProgressIndicator(
                                                         value: downloadProgress
                                                             .progress,
-                                                        color:
-                                                            AppColor.grayColor,
+                                                        color: AppColor
+                                                            .backGroundColor,
                                                       ),
                                                 ),
                                             errorWidget:
@@ -249,8 +307,79 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         );
                       }
                       return Center(
-                        child: CircularProgressIndicator(
-                          color: AppColor.grayColor,
+                        child: Skeletonizer(
+                          enabled: true,
+                          effect: ShimmerEffect(
+                            baseColor: AppColor.backGroundColor,
+                            highlightColor: AppColor.grayColor,
+                            duration: Duration(seconds: 1),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  top: 24,
+                                  bottom: 24,
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  spacing: 12,
+                                  children: [
+                                    Image.asset(
+                                      AppAsset.dummyImage,
+                                      height: 145,
+                                      width: 100,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    Image.asset(
+                                      AppAsset.dummyImage,
+                                      height: 145,
+                                      width: 100,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    Image.asset(
+                                      AppAsset.dummyImage,
+                                      height: 145,
+                                      width: 100,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  top: 24,
+                                  bottom: 24,
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  spacing: 12,
+                                  children: [
+                                    Image.asset(
+                                      AppAsset.dummyImage,
+                                      height: 145,
+                                      width: 100,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    Image.asset(
+                                      AppAsset.dummyImage,
+                                      height: 145,
+                                      width: 100,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    Image.asset(
+                                      AppAsset.dummyImage,
+                                      height: 145,
+                                      width: 100,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -281,3 +410,5 @@ class _DetailsScreenState extends State<DetailsScreen> {
     );
   }
 }
+
+const String dummyText = 'dummy';
