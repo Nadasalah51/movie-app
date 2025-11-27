@@ -165,8 +165,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                         );
                       }
-                      return CircularProgressIndicator(
-                        color: AppColor.grayColor,
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: AppColor.grayColor,
+                        ),
                       );
                     },
                   ),

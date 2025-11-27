@@ -7,7 +7,6 @@ import 'package:movie_app/feature/details/data/model/similar_model.dart';
 
 abstract class DetailsApi {
   static Future<ResultAPI<DetailsModel>> getMovieDetails(int id) async {
-    //api.themoviedb.org/3/movie/1033462?api_key=a03a5441a50487cfc0416c45cd853d40
     Uri url = Uri.https(
       AppConstApi.baseUrl,
       '${AppConstApi.detailsEndPoint}$id',
@@ -25,7 +24,6 @@ abstract class DetailsApi {
   }
 
   static Future<ResultAPI<SimilarModel>> getSimilarMovies(int id) async {
-    // api.themoviedb.org/3/movie/1419406/similar?api_key=a03a5441a50487cfc0416c45cd853d40
     Uri url = Uri.https(
       AppConstApi.baseUrl,
       '${AppConstApi.detailsEndPoint}$id${AppConstApi.similarEndPoint}',
