@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:movie_app/core/constants/app_const_api.dart';
 import 'package:movie_app/core/utils/app_asset.dart';
+import 'package:movie_app/core/utils/app_color.dart';
 
 class PosterItemWidget extends StatelessWidget {
   const PosterItemWidget({
@@ -35,12 +37,12 @@ class PosterItemWidget extends StatelessWidget {
                       bottomRight: Radius.circular(16),
                     ),
                     child: CachedNetworkImage(
-                      imageUrl: AppAsset.imagePrefix + backDropPath,
+                      imageUrl: AppConstApi.imagePrefix + backDropPath,
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) => Center(
                             child: CircularProgressIndicator(
                               value: downloadProgress.progress,
-                              color: Color(0xff92929D),
+                              color: AppColor.grayColor,
                             ),
                           ),
                       errorWidget: (context, url, error) => Icon(Icons.error),
@@ -55,7 +57,7 @@ class PosterItemWidget extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.only(left: 5),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color(0x00000000)),
+                        border: Border.all(color: AppColor.transperantColor),
                         borderRadius: BorderRadius.circular(5),
                         color: Color(0x77252836),
                       ),
@@ -68,7 +70,7 @@ class PosterItemWidget extends StatelessWidget {
                           SvgPicture.asset(
                             starIcon,
                             colorFilter: const ColorFilter.mode(
-                              Color(0xffFF8700),
+                              AppColor.orangeColor,
                               BlendMode.srcIn,
                             ),
                             semanticsLabel: 'Rating',
@@ -76,7 +78,7 @@ class PosterItemWidget extends StatelessWidget {
                           Text(
                             rating.toStringAsFixed(1),
                             style: TextStyle(
-                              color: Color(0xffFF8700),
+                              color: AppColor.orangeColor,
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                             ),
@@ -99,12 +101,12 @@ class PosterItemWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: CachedNetworkImage(
-                  imageUrl: AppAsset.imagePrefix + posterPath,
+                  imageUrl: AppConstApi.imagePrefix + posterPath,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       Center(
                         child: CircularProgressIndicator(
                           value: downloadProgress.progress,
-                          color: Color(0xff92929D),
+                          color: AppColor.grayColor,
                         ),
                       ),
                   errorWidget: (context, url, error) => Icon(Icons.error),

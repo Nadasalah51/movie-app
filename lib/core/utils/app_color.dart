@@ -5,5 +5,7 @@ abstract class AppColor {
   static const selectedColor = Color(0xff0296E5);
   static const orangeColor = Color(0xffFF8700);
   static const grayColor = Color(0xff92929D);
-
+  static const redColor = Colors.red;
+  static const whiteColor = Color(0xffffffff);
+  static const transperantColor = Color(0x00000000);
 }

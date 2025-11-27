@@ -6,19 +6,16 @@ import 'package:movie_app/feature/details/data/model/details_model.dart';
 import 'package:movie_app/feature/details/view_model/details_state.dart';
 
 class DetailsCubit extends Cubit<DetailsState> {
-  DetailsCubit() : super(InitialState());
+  DetailsCubit() : super(InitialDetailsState());
 
   Future<void> getDetailsFromAPI(int id) async {
-    emit(LoadingState());
+    emit(LoadingDetailsState());
     final result = await DetailsApi.getMovieDetails(id);
-    log('from no');
     switch (result) {
       case SuccessAPI<DetailsModel>():
-        log('from succes');
-        emit(SuccessState(result.data ?? DetailsModel()));
+        emit(SuccessDetailsState(result.data ?? DetailsModel()));
       case ErrorAPI<DetailsModel>():
-        log('from error');
-        emit(ErrorState(result.messageError));
+        emit(ErrorDetailsState(result.messageError));
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:movie_app/core/utils/app_color.dart';
 
 class InfoBarItemWidget extends StatelessWidget {
   const InfoBarItemWidget({
@@ -19,7 +20,7 @@ class InfoBarItemWidget extends StatelessWidget {
         SvgPicture.asset(
           icon,
           colorFilter: const ColorFilter.mode(
-            Color(0xff92929D),
+            AppColor.grayColor,
             BlendMode.srcIn,
           ),
         ),
@@ -28,7 +29,7 @@ class InfoBarItemWidget extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.w500,
             fontSize: 12,
-            color: Color(0xff92929D),
+            color: AppColor.grayColor,
           ),
         ),
       ],

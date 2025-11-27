@@ -2,16 +2,16 @@ import 'package:movie_app/feature/details/data/model/similar_model.dart';
 
 abstract class SimilarState {}
 
-class InitialState extends SimilarState {}
+class InitialSimilarState extends SimilarState {}
 
-class LoadingState extends SimilarState {}
+class LoadingSimilarState extends SimilarState {}
 
-class SuccessState extends SimilarState {
-  SuccessState(this.similarMoviesResult);
+class SuccessSimilarState extends SimilarState {
+  SuccessSimilarState(this.similarMoviesResult);
   List<Results> similarMoviesResult;
 }
 
-class ErrorState extends SimilarState {
-  ErrorState(this.errorMessage);
+class ErrorSimilarState extends SimilarState {
+  ErrorSimilarState(this.errorMessage);
   final String errorMessage;
 }

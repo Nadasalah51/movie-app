@@ -2,16 +2,16 @@ import 'package:movie_app/feature/details/data/model/details_model.dart';
 
 abstract class DetailsState {}
 
-class InitialState extends DetailsState {}
+class InitialDetailsState extends DetailsState {}
 
-class LoadingState extends DetailsState {}
+class LoadingDetailsState extends DetailsState {}
 
-class SuccessState extends DetailsState {
-  SuccessState(this.movieDetails);
+class SuccessDetailsState extends DetailsState {
+  SuccessDetailsState(this.movieDetails);
   DetailsModel movieDetails;
 }
 
-class ErrorState extends DetailsState {
-  ErrorState(this.errorMessage);
+class ErrorDetailsState extends DetailsState {
+  ErrorDetailsState(this.errorMessage);
   final String errorMessage;
 }
