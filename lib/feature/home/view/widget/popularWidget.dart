@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/features/home/view/widgets/customcardwidget.dart';
-import 'package:movie_app/features/home/view_model/popular_cubit.dart';
-
-import 'package:movie_app/features/home/view_model/popular_state.dart';
+import 'package:movie-app/feature/home/view/widget/customcardwidget.dart';
+import 'package:movie-app/feature/home/view_model/popular/popular_cubit.dart';
+import 'package:movie-app/core/utils/app_asset.dart';
+import 'package:movie-app/feature/home/view_model/popular/popular_state.dart';
 
 class PouplarWidget extends StatelessWidget {
   const PouplarWidget({
@@ -24,27 +24,26 @@ class PouplarWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Popular"),
+                  const Text("Popular",
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
                   const SizedBox(height: 10),
-                  SizedBox(
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 0.66,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 10,
-                      ),
-                      itemCount: state.results.length,
-                      itemBuilder: (context, index) {
-                        return CardPopularWidget(
-                          image:
-                              state.results[index].posterPath ?? "dummyImage",
-                        );
-                      },
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.66,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 10,
                     ),
+                    itemCount: state.results.length,
+                    itemBuilder: (context, index) {
+                      return CardPopularWidget(
+                        image: state.results[index].posterPath ?? dummyImage,
+                      );
+                    },
                   ),
                 ],
               ));
@@ -58,3 +57,6 @@ class PouplarWidget extends StatelessWidget {
     );
   }
 }
+
+String dummyImage =
+    'https://images.theconversation.com/files/651621/original/file-20250226-32-jxjhmy.jpg?ixlib=rb-4.1.0&rect=0%2C0%2C5991%2C3997&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip';

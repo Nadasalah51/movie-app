@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/features/home/view/widgets/customcardwidget.dart';
-import 'package:movie_app/features/home/view_model/release_cubit.dart';
-import 'package:movie_app/features/home/view_model/release_state.dart';
+import 'package:movie-app/feature/home/view/widget/customcardwidget.dart';
+import 'package:movie-app/feature/home/view_model/release/release_cubit.dart';
+import 'package:movie-app/feature/home/view_model/release/release_state.dart';
+import 'package:movie-app/core/utils/app_asset.dart';
 
 class ReleaseWidget extends StatelessWidget {
   const ReleaseWidget({
@@ -23,27 +24,26 @@ class ReleaseWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("release"),
+                  const Text("release",
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
                   const SizedBox(height: 10),
-                  SizedBox(
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 0.66,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 10,
-                      ),
-                      itemCount: state.results.length,
-                      itemBuilder: (context, index) {
-                        return CardPopularWidget(
-                          image:
-                              state.results[index].posterPath ?? "dummyImage",
-                        );
-                      },
+                  GridView.builder(
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.66,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 10,
                     ),
+                    itemCount: state.results.length,
+                    itemBuilder: (context, index) {
+                      return CardPopularWidget(
+                        image: state.results[index].posterPath ??
+                            AppAsset.dummyImage,
+                      );
+                    },
                   ),
                 ],
               ));
