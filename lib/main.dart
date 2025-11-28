@@ -20,8 +20,6 @@ class MovieApp extends StatelessWidget {
       routes: {
         AppSectionScreen.routeName: (context) => AppSectionScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
-        DetailsScreen.routeName: (context) =>
-            DetailsScreen(selectedId: 1419406),
         SearchScreen.routeName: (context) => SearchScreen(),
         SavedScreen.routeName: (context) => SavedScreen(),
       },
