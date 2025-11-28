@@ -1,4 +1,3 @@
-import 'package:movie_app/feature/home/data/model/popular_model.dart';
 import 'package:movie_app/feature/home/data/model/release_model.dart';
 
 abstract class ReleaseState {}
