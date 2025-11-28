@@ -1,14 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie-app/core/network/result_api.dart';
-import 'package:movie-app/feature/home/data/api/home_api.dart';
+import 'package:movie_app/core/network/result_api.dart';
+import 'package:movie_app/feature/home/data/api/home_api.dart';
+import 'package:movie_app/feature/home/data/model/popular_model.dart';
+import 'package:movie_app/feature/home/view_model/popular/popular_state.dart';
 
-import 'package:movie-app/feature/home/data/model/Popular_model.dart';
-
-import 'package:movie-app/feature/home/view_model/popular/popular_state.dart';
 
 class PopularCubit extends Cubit<PopularState> {
+  
   PopularCubit() : super(InitialState());
-  List<Results>? results = [];
+  List<PopularResults>? results = [];
 
   Future<void> getMovies() async {
     emit(LoadingState());

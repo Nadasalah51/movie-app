@@ -1,4 +1,4 @@
-import 'package:movie-app/feature/home/data/model/Popular_model.dart';
+import 'package:movie_app/feature/home/data/model/popular_model.dart';
 
 abstract class PopularState {}
 
@@ -7,8 +7,8 @@ class InitialState extends PopularState {}
 class LoadingState extends PopularState {}
 
 class SucessState extends PopularState {
-  List<Results> results = [];
-  SucessState(this.results);
+  List<PopularResults> popularResult = [];
+  SucessState(this.popularResult);
 }
 
 class ErrorState extends PopularState {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/feature/home/view/widget/popularWidget.dart';
+import 'package:movie_app/feature/home/view/widget/releaseWidget.dart';
+import 'package:movie_app/feature/home/view_model/popular/popular_cubit.dart';
+import 'package:movie_app/feature/home/view_model/release/release_cubit.dart';
 
-import 'package:movie-app/feature/home/view/widget/popularWidget.dart';
-import 'package:movie-app/feature/home/view/widget/releaseWidget.dart';
-import 'package:movie-app/feature/home/view_model/popular/popular_cubit.dart';
-import 'package:movie-app/feature/home/view_model/release/release_cubit.dart';
+
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
