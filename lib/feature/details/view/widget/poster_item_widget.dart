@@ -42,7 +42,7 @@ class PosterItemWidget extends StatelessWidget {
                           ),
                           child: CachedNetworkImage(
                             imageUrl:
-                                AppConstApi.imagePrefix + (backDropPath ?? ''),
+                                AppConstApi.imageBaseUrl + (backDropPath ?? ''),
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) => Center(
                                   child: CircularProgressIndicator(
@@ -109,7 +109,7 @@ class PosterItemWidget extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: CachedNetworkImage(
-                        imageUrl: AppConstApi.imagePrefix + (posterPath ?? ''),
+                        imageUrl: AppConstApi.imageBaseUrl + (posterPath ?? ''),
                         progressIndicatorBuilder:
                             (context, url, downloadProgress) => Center(
                               child: CircularProgressIndicator(

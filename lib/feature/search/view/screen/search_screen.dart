@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_app/core/utils/app_asset.dart';
 import 'package:movie_app/core/utils/app_color.dart';
+import 'package:movie_app/feature/details/view/screen/details_screen.dart';
 import 'package:movie_app/feature/search/view/widget/custom_form_text_field.dart';
 import 'package:movie_app/feature/search/view/widget/search_item_model_widget.dart';
 import 'package:movie_app/feature/search/view_model/search_cubit.dart';
@@ -127,13 +128,22 @@ class SearchScreen extends StatelessWidget {
                               ),
                             );
                           }
-                          return InkWell(
-                            child: ListView.builder(
-                              itemCount: state.searchData!.results!.length,
-                              itemBuilder: (context, index) {
-                                final movie = state.searchData!.results![index];
-                                return Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                          return ListView.builder(
+                            itemCount: state.searchData!.results!.length,
+                            itemBuilder: (context, index) {
+                              final movie = state.searchData!.results![index];
+                              return Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailsScreen(
+                                          selectedId: movie.id ?? 287,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                   child: SearchItemModelWidget(
                                     title: movie.title ?? '',
                                     pathImage: movie.posterPath ?? '',
@@ -142,9 +152,9 @@ class SearchScreen extends StatelessWidget {
                                     clock: movie.title ?? 'Unknown Title',
                                     ticket: movie.originalLanguage ?? 'Action',
                                   ),
-                                );
-                              },
-                            ),
+                                ),
+                              );
+                            },
                           );
                         }
                         return SizedBox();

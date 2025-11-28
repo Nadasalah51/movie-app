@@ -265,9 +265,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                           ),
                                           child: CachedNetworkImage(
                                             imageUrl:
-                                                AppConstApi.imagePrefix +
+                                                AppConstApi.imageBaseUrl +
                                                 movie.posterPath!,
-
                                             progressIndicatorBuilder:
                                                 (
                                                   context,
