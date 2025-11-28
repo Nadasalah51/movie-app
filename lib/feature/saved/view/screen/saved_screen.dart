@@ -11,7 +11,9 @@ class SavedScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Watch list'),
-        leading: SvgPicture.asset(AppAsset.menuIcon, width: 20, height: 20),
+        leading: Center(
+          child: SvgPicture.asset(AppAsset.menuIcon, width: 20, height: 20),
+        ),
       ),
       body: Center(
         child: Column(
