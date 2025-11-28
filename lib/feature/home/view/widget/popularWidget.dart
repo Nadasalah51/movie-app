@@ -41,7 +41,11 @@ class PouplarWidget extends StatelessWidget {
                     itemCount: state.results.length,
                     itemBuilder: (context, index) {
                       return CardPopularWidget(
-                        image: state.results[index].posterPath ?? dummyImage,
+                        ontap: () {
+                          Navigator.pushNamed(context, DetailsScreen.routeName);
+                        },
+                        image: state.results[index].posterPath ??
+                            AppAsset.dummyImage,
                       );
                     },
                   ),

@@ -42,6 +42,9 @@ class ReleaseWidget extends StatelessWidget {
                       return CardPopularWidget(
                         image: state.results[index].posterPath ??
                             AppAsset.dummyImage,
+                        ontap: () {
+                          Navigator.pushNamed(context, DetailsScreen.routeName);
+                        },
                       );
                     },
                   ),
