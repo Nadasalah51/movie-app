@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/network/result_api.dart';
 import 'package:movie_app/feature/details/data/api/details_api.dart';

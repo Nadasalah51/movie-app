@@ -42,7 +42,13 @@ class ReleaseWidget extends StatelessWidget {
                           state.results[index].posterPath ??
                           AppAsset.dummyImage,
                       ontap: () {
-                        Navigator.pushNamed(context, DetailsScreen.routeName);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(
+                              selectedId: state.results[index].id ?? 287,
+                            ),
+                          ),
+                        );
                       },
                     );
                   },

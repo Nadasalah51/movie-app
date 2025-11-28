@@ -14,12 +14,12 @@ class ReleaseModel {
   });
 
   ReleaseModel.fromJson(Map<String, dynamic> json) {
-    dates = json['dates'] != null ? new Dates.fromJson(json['dates']) : null;
+    dates = json['dates'] != null ? Dates.fromJson(json['dates']) : null;
     page = json['page'];
     if (json['results'] != null) {
       results = <Results>[];
       json['results'].forEach((v) {
-        results!.add(new Results.fromJson(v));
+        results!.add(Results.fromJson(v));
       });
     }
     totalPages = json['total_pages'];

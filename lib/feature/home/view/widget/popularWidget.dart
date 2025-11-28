@@ -41,7 +41,13 @@ class PouplarWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return CardPopularWidget(
                       ontap: () {
-                        Navigator.pushNamed(context, DetailsScreen.routeName);
+                         Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DetailsScreen(
+                                  selectedId: state.popularResult[index].id ?? 287,
+                                ),
+                              ),
+                            );
                       },
                       image:
                           state.popularResult[index].posterPath ??

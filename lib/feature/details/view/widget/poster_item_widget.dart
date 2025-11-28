@@ -246,6 +246,5 @@ class PosterItemWidget extends StatelessWidget {
             ),
           );
 
-    ;
   }
 }
