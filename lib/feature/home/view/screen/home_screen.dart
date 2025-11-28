@@ -43,7 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, state) {
               if (state is ErrorRecommendationState) {
                 return Center(
-                  child: Text('No internet Connection', style: TextStyle(color: AppColor.orangeColor)),
+                  child: Text(
+                    'No internet Connection',
+                    style: TextStyle(color: AppColor.orangeColor),
+                  ),
                 );
               }
               if (state is SuccessRecommendationState) {
@@ -55,12 +58,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) {
                       return ContainerWithIndex(
                         pathImage:
-                        "${AppConstApi.imageBaseUrl}${state.results[index].posterPath}",
+                            "${AppConstApi.imageBaseUrl}${state.results[index].posterPath}",
                         index: index + 1,
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => DetailsScreen(),
+                              builder: (context) => DetailsScreen(
+                                selectedId: state.results[index].id ?? 287,
+                              ),
                             ),
                           );
                         },
@@ -72,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
               return SizedBox();
-
             },
           ),
         ],
