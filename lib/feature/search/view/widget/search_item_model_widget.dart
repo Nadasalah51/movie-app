@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:movie_app/core/constants/app_const_api.dart';
 import 'package:movie_app/core/utils/app_asset.dart';
 import 'package:movie_app/core/utils/app_color.dart';
 
@@ -31,7 +32,7 @@ class SearchItemModelWidget extends StatelessWidget {
             child: CachedNetworkImage(
               imageUrl: pathImage == '' || pathImage == ' '
                   ? AppAsset.dummyImage
-                  : '${AppAsset.imageBaseUrl}$pathImage',
+                  : '${AppConstApi.imageBaseUrl}$pathImage',
               width: 95,
               height: 120,
               fit: BoxFit.cover,

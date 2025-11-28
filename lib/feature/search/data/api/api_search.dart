@@ -1,14 +1,14 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
+import 'package:movie_app/core/constants/app_const_api.dart';
 import 'package:movie_app/core/network/result_api.dart';
 import 'package:movie_app/feature/search/data/model/search_model.dart';
 
 class ApiSearch {
   static Future<ResultAPI<SearchModel>> getSearchData(String query) async {
-    Uri url = Uri.https('api.themoviedb.org', '/3/search/movie', {
+    Uri url = Uri.https(AppConstApi.baseUrl, AppConstApi.searchEndPoint, {
       "query": query,
-      "api_key": "a03a5441a50487cfc0416c45cd853d40",
+      "api_key": AppConstApi.apiKey,
     });
 
     try {
