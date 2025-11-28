@@ -1,10 +1,12 @@
-class SearchModel {
+class SimilarModel {
   int? page;
   List<Results>? results;
+  int? totalPages;
+  int? totalResults;
 
-  SearchModel({this.page, this.results,});
+  SimilarModel({this.page, this.results, this.totalPages, this.totalResults});
 
-  SearchModel.fromJson(Map<String, dynamic> json) {
+  SimilarModel.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
       results = <Results>[];
@@ -12,8 +14,9 @@ class SearchModel {
         results!.add(Results.fromJson(v));
       });
     }
+    totalPages = json['total_pages'];
+    totalResults = json['total_results'];
   }
-
 }
 
 class Results {
@@ -64,24 +67,5 @@ class Results {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['adult'] = adult;
-    data['backdrop_path'] = backdropPath;
-    data['genre_ids'] = genreIds;
-    data['id'] = id;
-    data['original_language'] = originalLanguage;
-    data['original_title'] = originalTitle;
-    data['overview'] = overview;
-    data['popularity'] = popularity;
-    data['poster_path'] = posterPath;
-    data['release_date'] = releaseDate;
-    data['title'] = title;
-    data['video'] = video;
-    data['vote_average'] = voteAverage;
-    data['vote_count'] = voteCount;
-    return data;
   }
 }

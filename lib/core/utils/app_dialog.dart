@@ -12,7 +12,7 @@ abstract class AppDialog {
           content: Row(
             spacing: 10,
             children: [
-              CircularProgressIndicator(color: AppColor.selectedColor),
+              CircularProgressIndicator(color: AppColor.grayColor),
               Text(
                 'loading..',
                 style: TextStyle(

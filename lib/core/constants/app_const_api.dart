@@ -5,8 +5,9 @@ abstract class AppConstApi {
   static const String imageBaseUrl = 'https://image.tmdb.org/t/p/w200';
   static const String popularEndPoint = '/3/movie/popular';
   static const String searchEndPoint = '/3/search/movie';
-  static const String realesedEndPoint = '/3/movie/upcoming';
   static const String similarEndPoint = '/similar';
-  static const String detailsEndPoint = '/3/movie/';
+  static const String realesedEndPoint = '/3/movie/upcoming';
+  static const String detailsEndPoint = "/3/movie/";
 
+  static const String imagePrefix = 'https://image.tmdb.org/t/p/w500';
 }
