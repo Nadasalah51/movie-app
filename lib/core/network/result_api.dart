@@ -8,8 +8,5 @@ class SuccessAPI<T> extends ResultAPI<T> {
 class ErrorAPI<T> extends ResultAPI<T> {
   ErrorAPI({required this.messageError});
   String messageError;
-}
 
-ResultAPI get getUser {
-  return SuccessAPI();
 }

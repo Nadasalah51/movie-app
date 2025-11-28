@@ -7,6 +7,5 @@ abstract class AppConstApi {
   static const String searchEndPoint = '/3/search/movie';
   static const String realesedEndPoint = '/3/movie/upcoming';
   static const String similarEndPoint = '/similar';
-  static const String detailsEndPoint = '/3/movie/';
-  
+  static const String detailsEndPoint = '/3/movie/';  
 }

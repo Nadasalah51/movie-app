@@ -11,5 +11,6 @@ abstract class AppAsset {
   static const String arrowBackIcon = 'assets/icon/arrow-left_icon.svg';
   static const String boxImage = 'assets/image/box_image.png';
   static const String noResultImage = 'assets/image/no-results_image.png';
-  static const String dummyImage = 'assets/image/dummy_image.jpg';
+  static const String dummyImage = "assets/image/dummy_image.jpg";
+
 }
