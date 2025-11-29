@@ -1,4 +1,4 @@
-import 'package:movie_app/feature/search/data/model/search_model.dart';
+import 'package:movie_app/feature/details/data/model/details_model.dart';
 
 class SavedModel {
   int id;
@@ -6,7 +6,7 @@ class SavedModel {
   String ticket;
   String date;
   String image;
-  int rate;
+  double rate;
   SavedModel({
     required this.id,
     required this.date,
@@ -16,6 +16,32 @@ class SavedModel {
     required this.title,
   });
 
-  Results get toModel =>
-      Results(id: id, releaseDate: date, originalLanguage: ticket, title: title);
+  factory SavedModel.fromMap(Map<String, dynamic> map) {
+    return SavedModel(
+      id: map['id'],
+      title: map['title'],
+      rate: map['rate'],
+      ticket: map['ticket'],
+      date: map['date'],
+      image: map['image'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'rate': rate,
+      'ticket': ticket,
+      'date': date,
+      'image': image,
+    };
+  }
+
+  DetailsModel get toModel => DetailsModel(
+    id: id,
+    releaseDate: date,
+    originalLanguage: ticket,
+    title: title,
+  );
 }

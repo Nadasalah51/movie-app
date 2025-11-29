@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_app/core/constants/app_const_api.dart';
 import 'package:movie_app/core/utils/app_asset.dart';
 import 'package:movie_app/core/utils/app_color.dart';
+import 'package:movie_app/feature/saved/data/database/sql_database.dart';
+import 'package:movie_app/feature/saved/data/model/saved_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:toastification/toastification.dart';
 import 'package:movie_app/feature/details/view/widget/info_bar_item_widget.dart';
@@ -25,9 +27,26 @@ class DetailsScreen extends StatefulWidget {
 
 class _DetailsScreenState extends State<DetailsScreen> {
   late bool saved = false;
+  late SavedModel savedMovie = SavedModel(
+    id: 0,
+    date: '',
+    ticket: '',
+    image: '',
+    rate: 0,
+    title: '',
+  );
   @override
   void initState() {
     super.initState();
+    _checkIfSaved();
+  }
+
+  @override
+  Future<void> _checkIfSaved() async {
+    final bool isSaved = await SqlHelper().isMovieSaved(widget.selectedId);
+    setState(() {
+      saved = isSaved;
+    });
   }
 
   @override
@@ -83,6 +102,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   BlocBuilder<DetailsCubit, DetailsState>(
                     builder: (context, state) {
                       if (state is SuccessDetailsState) {
+                        savedMovie.id = state.movieDetails.id ?? 0;
+                        savedMovie.date =
+                            state.movieDetails.releaseDate?.substring(0, 4) ??
+                            '';
+                        savedMovie.title = state.movieDetails.title ?? '';
+                        savedMovie.image = state.movieDetails.posterPath ?? '';
+                        savedMovie.rate = state.movieDetails.voteAverage ?? 0;
+                        savedMovie.ticket = state.movieDetails.title ?? '';
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           spacing: 15,
@@ -392,20 +419,47 @@ class _DetailsScreenState extends State<DetailsScreen> {
     );
   }
 
-  void savedOnTap() {
-    saved = !saved;
-    setState(() {});
+  void savedOnTap() async {
+    final bool previousSavedState = saved;
+    setState(() {
+      saved = !saved;
+    });
+    try {
+      if (saved == true) {
+        await SqlHelper().addMovie(savedMovie);
+        _showToast(true);
+      } else {
+        await SqlHelper().deleteMovie(savedMovie.id);
+        _showToast(false);
+      }
+    } catch (e) {
+      setState(() {
+        saved = previousSavedState;
+      });
+    }
+  }
+
+  void _showToast(bool? success) {
+    String message;
+    Color? foregroundColor;
+
+    if (success == true) {
+      message = 'Added To Watch List';
+      foregroundColor = successColor;
+    } else if (success == false) {
+      message = 'Removed from Watch List';
+      foregroundColor = successColor;
+    } else {
+      message = 'Operation failed. Try again.';
+      foregroundColor = errorColor;
+    }
 
     toastification.show(
-      context: context, // optional if you use ToastificationWrapper
-      title: Text(
-        saved ? 'Added To Watch List' : 'Removed from Watch List',
-        style: Theme.of(context).appBarTheme.titleTextStyle,
-      ),
+      context: context,
+      title: Text(message, style: TextStyle(color: foregroundColor)),
       autoCloseDuration: const Duration(seconds: 2),
       alignment: Alignment.bottomCenter,
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-      foregroundColor: AppColor.whiteColor,
+      backgroundColor: AppColor.whiteColor,
     );
   }
 }

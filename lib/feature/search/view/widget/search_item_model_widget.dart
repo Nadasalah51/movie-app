@@ -30,9 +30,7 @@ class SearchItemModelWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
             child: CachedNetworkImage(
-              imageUrl: pathImage == '' || pathImage == ' '
-                  ? AppAsset.dummyImage
-                  : '${AppConstApi.imageBaseUrl}$pathImage',
+              imageUrl: '${AppConstApi.imageBaseUrl}$pathImage',
               width: 95,
               height: 120,
               fit: BoxFit.cover,
@@ -75,9 +73,13 @@ class SearchItemModelWidget extends StatelessWidget {
                   spacing: 4,
                   children: [
                     SvgPicture.asset(AppAsset.ticketIcon),
-                    Text(
-                      ticket.toString(),
-                      style: Theme.of(context).textTheme.displayMedium,
+                    Flexible(
+                      child: Text(
+                        ticket,
+                        style: Theme.of(context).textTheme.displayMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
                   ],
                 ),
@@ -100,8 +102,8 @@ class SearchItemModelWidget extends StatelessWidget {
                   children: [
                     SvgPicture.asset(AppAsset.clockIcon),
                     Text(
-                      calender.length >= 7
-                          ? '${calender.substring(5, 7)} minutes'
+                      calender.length >= 4
+                          ? '${calender.substring(2, 4)} minutes'
                           : '$calender minutes',
                       style: Theme.of(context).textTheme.displayMedium,
                     ),

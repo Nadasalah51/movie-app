@@ -1,16 +1,20 @@
-part of 'saved_cubit.dart';
 
-@immutable
+import 'package:movie_app/feature/saved/data/model/saved_model.dart';
+
 abstract class SavedState {}
 
-class SavedInitial extends SavedState {}
+class InitialState extends SavedState {}
 
+class EmptyState extends SavedState {}
 
-class SavedLoading extends SavedState{}
+class LoadingState extends SavedState {}
 
-class SavedSuccess extends SavedState{}
+class SuccessState extends SavedState {
+  final List<SavedModel> movies;
+  SuccessState({required this.movies});
+}
 
-class SavedErrorstate extends SavedLoading{
-   final String message;
-  SavedErrorstate({required this.message});
+class Errorstate extends SavedState {
+  final String message;
+  Errorstate({required this.message});
 }

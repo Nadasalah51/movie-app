@@ -150,7 +150,7 @@ class SearchScreen extends StatelessWidget {
                                     vote: movie.voteAverage ?? 0.0,
                                     calender: movie.releaseDate ?? 'N/A',
                                     clock: movie.title ?? 'Unknown Title',
-                                    ticket: movie.originalLanguage ?? 'Action',
+                                    ticket: movie.title ?? 'Action',
                                   ),
                                 ),
                               );
