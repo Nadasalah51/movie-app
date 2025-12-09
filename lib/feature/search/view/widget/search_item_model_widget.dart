@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:movie_app/core/constants/app_const_api.dart';
 import 'package:movie_app/core/utils/app_asset.dart';
 import 'package:movie_app/core/utils/app_color.dart';
 
@@ -28,10 +29,9 @@ class SearchItemModelWidget extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
-            child: CachedNetworkImage(
-              imageUrl: pathImage == '' || pathImage == ' '
-                  ? AppAsset.dummyImage
-                  : '${AppAsset.imageBaseUrl}$pathImage',
+            child: 
+            CachedNetworkImage(
+              imageUrl: '${AppConstApi.imageBaseUrl}$pathImage',
               width: 95,
               height: 120,
               fit: BoxFit.cover,
@@ -74,9 +74,13 @@ class SearchItemModelWidget extends StatelessWidget {
                   spacing: 4,
                   children: [
                     SvgPicture.asset(AppAsset.ticketIcon),
-                    Text(
-                      ticket.toString(),
-                      style: Theme.of(context).textTheme.displayMedium,
+                    Flexible(
+                      child: Text(
+                        ticket,
+                        style: Theme.of(context).textTheme.displayMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
                   ],
                 ),
@@ -99,8 +103,8 @@ class SearchItemModelWidget extends StatelessWidget {
                   children: [
                     SvgPicture.asset(AppAsset.clockIcon),
                     Text(
-                      calender.length >= 7
-                          ? '${calender.substring(5, 7)} minutes'
+                      calender.length >= 4
+                          ? '${calender.substring(2, 4)} minutes'
                           : '$calender minutes',
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
