@@ -40,8 +40,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
     super.initState();
     _checkIfSaved();
   }
-
-  @override
   Future<void> _checkIfSaved() async {
     final bool isSaved = await SqlHelper().isMovieSaved(widget.selectedId);
     setState(() {
