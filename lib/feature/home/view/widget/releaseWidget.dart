@@ -29,6 +29,7 @@ class ReleaseWidget extends StatelessWidget {
                 const SizedBox(height: 10),
                 GridView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 0.66,

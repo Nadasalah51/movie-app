@@ -29,7 +29,8 @@ class SearchItemModelWidget extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
-            child: CachedNetworkImage(
+            child: 
+            CachedNetworkImage(
               imageUrl: '${AppConstApi.imageBaseUrl}$pathImage',
               width: 95,
               height: 120,

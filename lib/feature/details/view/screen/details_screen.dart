@@ -441,25 +441,22 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   void _showToast(bool? success) {
     String message;
-    Color? foregroundColor;
+
 
     if (success == true) {
       message = 'Added To Watch List';
-      foregroundColor = successColor;
     } else if (success == false) {
       message = 'Removed from Watch List';
-      foregroundColor = successColor;
     } else {
       message = 'Operation failed. Try again.';
-      foregroundColor = errorColor;
     }
 
     toastification.show(
       context: context,
-      title: Text(message, style: TextStyle(color: foregroundColor)),
+      title: Text(message, style: TextStyle(color: AppColor.whiteColor)),
       autoCloseDuration: const Duration(seconds: 2),
       alignment: Alignment.bottomCenter,
-      backgroundColor: AppColor.whiteColor,
+      backgroundColor: AppColor.backGroundColor,
     );
   }
 }
