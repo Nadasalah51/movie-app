@@ -42,11 +42,9 @@ Team Delivery: Successfully delivered the project as a cohesive team of four dev
 This project was a collaborative effort by:
 
 github.com/Nadasalah51
+
 github.com/shahd-ahmed804
+
 github.com/sondoslabib
+
 github.com/emanelnazer
-
-
-[Teammate 2 Name] (GitHub Profile Link or LinkedIn)
-
-[Teammate 3 Name] (GitHub Profile Link or LinkedIn)
